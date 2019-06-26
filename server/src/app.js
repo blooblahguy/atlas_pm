@@ -9,9 +9,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 // basic routes
-app.get("/status", (req, res) => {
+app.post("/register", (req, res) => {
 	res.send({
-		message: "Hello world"
+		message: `Hello ${req.body.email}. Your user was registered`,
+
 	})
 })
 

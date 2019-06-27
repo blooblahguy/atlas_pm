@@ -1,23 +1,34 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view/>
+	<page-header></page-header>
+	<div class="body_wrapper">
+		<div class="row">
+			<div class="os-2 left" v-if="! $store.state.isUserLoggedIn">
+
+			</div>
+			<div class="os main pad2">
+				<router-view/>
+			</div>
+		</div>
+	</div>
   </div>
 </template>
 
 <script>
+import PageHeader from "@/components/Header.vue"
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+	  return {
+		  logged_in: false
+	  }
+  },
+  components: {
+	  PageHeader
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>

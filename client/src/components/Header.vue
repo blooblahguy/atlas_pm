@@ -5,12 +5,18 @@
 				<router-link to="/" class="logo display-block strong">Atlas Project Managment</router-link>
 			</div>
 			<div class="os text-right">
-				<ul class="nolist marg0 top_menu" v-if="$store.state.isUserLoggedIn">
+				<ul class="nolist marg0 top_menu" v-if="! $store.state.isUserLoggedIn">
 					<li>
 						<router-link to="register">Register</router-link>
 					</li>
 					<li>
 						<router-link to="login">Login</router-link>
+					</li>
+				</ul>
+
+				<ul class="nolist marg0 top_menu" v-if="$store.state.isUserLoggedIn">
+					<li>
+						<a href="" @click="logout">Logout</a>
 					</li>
 				</ul>
 			</div>
@@ -20,7 +26,15 @@
 
 <script>
 export default {
-	
+	methods: {
+		logout() {
+			this.$store.dispatch("setToken", null)
+			this.$store.dispatch("setUser", null)
+			this.$router.push({
+				name: "root"
+			})
+		}
+	}
 }
 </script>
 
